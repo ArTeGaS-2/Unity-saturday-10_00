@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public float forceTime = 1f; // Час дії інерції
     public float forceMultiplier = 100f; // Множник сили
 
+    public float animTime = 20f; // Час дії анімації
+
     private Rigidbody rb; // Посилання на фізичний компонент
 
     private void Start()
@@ -46,11 +48,52 @@ public class Player : MonoBehaviour
                     * Time.deltaTime, ForceMode.Acceleration);
                 // Обмежуємо максимальну швидкість
                 rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+                SlimeMoveAnim();
+            }
+            else
+            {
+                SlimeStopAnim();
             }
         }
         mainCamera.transform.position = new Vector3(
             transform.position.x,
             7,
             transform.position.z - 1);
+    }
+    private void SlimeMoveAnim()
+    {
+        // Плавно змінюємо розмір
+        float forwardScale = Mathf.Lerp(
+            transform.localScale.z,
+            1.3f,
+            Time.deltaTime / animTime);
+        float sideScale = Mathf.Lerp(
+            transform.localScale.x,
+            0.8f,
+            Time.deltaTime / animTime);
+
+
+        transform.localScale = new Vector3(
+            sideScale,
+            transform.localScale.y,
+            forwardScale);
+    }
+    private void SlimeStopAnim()
+    {
+        // Плавно змінюємо розмір
+        float forwardScale = Mathf.Lerp(
+            transform.localScale.z,
+            1f,
+            Time.deltaTime / animTime);
+        float sideScale = Mathf.Lerp(
+            transform.localScale.x,
+            1f,
+            Time.deltaTime / animTime);
+
+
+        transform.localScale = new Vector3(
+            sideScale,
+            transform.localScale.y,
+            forwardScale);
     }
 }
