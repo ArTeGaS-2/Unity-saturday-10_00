@@ -6,6 +6,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Camera mainCamera; // Посиланя на головну камеру
+    private static float cameraDistance = 7f; // Висота камери
+    private static float cameraRetreat = -0.1f; // Відсутні камери (вниз)
+    private static float cameraDistanceMod; // Модіфікатор висоти
+    private static float cameraRetreatMod; // Модіфікатор відступу
 
     public float maxSpeed = 10f; // Максимальна швидкість гравця
     public float forceTime = 1f; // Час дії інерції
@@ -15,12 +19,42 @@ public class Player : MonoBehaviour
 
     private Rigidbody rb; // Посилання на фізичний компонент
 
+    public float divider = 2f; // Значеня на яке ми ділимо або множимо кординати
+
+    public static Vector3 scaleMod; // Модіфікатор розміру
+    private static Vector3 currentScale; // Поточний розмір
+    private static float forwardMod; // Розтягувати в довжину
+    private static float sideMod; // Розтягувати в ширину
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        currentScale = transform.localScale; // Прив'язуємо поточний розмір до "currentScale"
+
+        scaleMod = transform.localScale / divider; // Значення на яке буде збільшуватися розмір
+
+        forwardMod = currentScale.z * 1.3F;
+        sideMod = currentScale.x * 0.8f;
+
+    }
+    // Додає розмір слайму, коли викликається та коригує модіфікатори для анімації
+    public static void AddScale()
+    {
+        currentScale = currentScale + scaleMod;
+
+        forwardMod = currentScale.z * 1.3f;
+        sideMod = currentScale.x * 0.8f;
+
+    }
+    public static void AddCameraDistance()
+    {
+        cameraDistance = currentScale.x;
+        cameraRetreatMod = 1f + (currentScale.x / 7f);
     }
     private void Update()
     {
+
         // Отримуємо позицію миші в світових координатах
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
@@ -57,19 +91,20 @@ public class Player : MonoBehaviour
         }
         mainCamera.transform.position = new Vector3(
             transform.position.x,
-            7,
-            transform.position.z - 1);
+            cameraDistance + cameraDistanceMod,
+            cameraRetreatMod);
+            
     }
     private void SlimeMoveAnim()
     {
         // Плавно змінюємо розмір
         float forwardScale = Mathf.Lerp(
             transform.localScale.z,
-            1.3f,
+            currentScale.z,
             Time.deltaTime / animTime);
         float sideScale = Mathf.Lerp(
             transform.localScale.x,
-            0.8f,
+            currentScale.x,
             Time.deltaTime / animTime);
 
 

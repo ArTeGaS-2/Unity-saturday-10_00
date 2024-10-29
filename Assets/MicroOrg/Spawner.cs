@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour
             x_Pos = Random.Range(-diameter, diameter);
             z_Pos = Random.Range(-diameter,diameter);
             // Обираємо конкретний організм зі списку
-            GameObject organism = organisms[Random.Range(0, organisms.Count -1)];
+            GameObject organism = organisms[Random.Range(0, organisms.Count)];
             // Визначаємо точку спавну
             Vector3 spawnPos = new Vector3(
                 x_Pos,

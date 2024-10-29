@@ -400,6 +400,7 @@ MonoBehaviour:
   forceTime: 1
   forceMultiplier: 2000
   animTime: 0.3
+  divider: 2
 --- !u!54 &379341260
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -737,6 +738,7 @@ GameObject:
   - component: {fileID: 1363204836}
   - component: {fileID: 1363204835}
   - component: {fileID: 1363204834}
+  - component: {fileID: 1363204838}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -831,6 +833,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1363204838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363204833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 153b1f74a5f673d4085a49506001dd1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  organisms:
+  - {fileID: 292247393562213269, guid: 442781549d149e84b89d9556797d3ecf, type: 3}
+  spawnNumber: 100
+  diameter: 10
 --- !u!1 &1490048817
 GameObject:
   m_ObjectHideFlags: 0
