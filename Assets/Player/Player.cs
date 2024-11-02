@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     public Camera mainCamera; // Посиланя на головну камеру
     private static float cameraDistance = 7f; // Висота камери
-    private static float cameraRetreat = -0.1f; // Відсутні камери (вниз)
+    private static float cameraRetreat = -0.1f; // Відступ камери (вниз)
     private static float cameraDistanceMod; // Модіфікатор висоти
     private static float cameraRetreatMod; // Модіфікатор відступу
 
@@ -25,8 +25,6 @@ public class Player : MonoBehaviour
     private static Vector3 currentScale; // Поточний розмір
     private static float forwardMod; // Розтягувати в довжину
     private static float sideMod; // Розтягувати в ширину
-
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
