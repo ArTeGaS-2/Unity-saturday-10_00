@@ -396,11 +396,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 2019322028}
+  multiplier: 0.02
   maxSpeed: 10
-  forceTime: 1
   forceMultiplier: 2000
+  forceMod: 50
   animTime: 0.3
-  divider: 2
+  divider: 50
+  forwardMod: 1.3
+  sideMod: 0.8
 --- !u!54 &379341260
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -848,8 +851,8 @@ MonoBehaviour:
   organisms:
   - {fileID: 292247393562213269, guid: 442781549d149e84b89d9556797d3ecf, type: 3}
   - {fileID: 6500294583159943413, guid: 2592218effaadbe458a257f181f13e13, type: 3}
-  spawnNumber: 100
-  diameter: 10
+  spawnNumber: 1000
+  diameter: 15
 --- !u!1 &1490048817
 GameObject:
   m_ObjectHideFlags: 0

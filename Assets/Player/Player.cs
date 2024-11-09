@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance;
+
     public Camera mainCamera; // Посиланя на головну камеру
-    private static float cameraDistance = 7f; // Висота камери
-    private static float cameraRetreat = -0.1f; // Відступ камери (вниз)
-    private static float cameraDistanceMod; // Модіфікатор висоти
-    private static float cameraRetreatMod; // Модіфікатор відступу
+    private float cameraDistance = 7f; // Висота камери
+    private float cameraDistanceMod; // Модіфікатор висоти
+    public float multiplier = 0.02f; // Множник
 
     public float maxSpeed = 10f; // Максимальна швидкість гравця
-    public float forceTime = 1f; // Час дії інерції
     public float forceMultiplier = 100f; // Множник сили
+    public float forceMod = 15f;
 
     public float animTime = 20f; // Час дії анімації
 
@@ -21,34 +22,38 @@ public class Player : MonoBehaviour
 
     public float divider = 2f; // Значеня на яке ми ділимо або множимо кординати
 
-    public static Vector3 scaleMod; // Модіфікатор розміру
-    private static Vector3 currentScale; // Поточний розмір
-    private static float forwardMod; // Розтягувати в довжину
-    private static float sideMod; // Розтягувати в ширину
+    private Vector3 scaleMod; // Модіфікатор розміру
+    private Vector3 currentScale; // Поточний розмір
+    public float forwardMod = 1.3f; // Розтягувати в довжину
+    public float sideMod = 0.8f; // Розтягувати в ширину
     private void Start()
     {
+        Instance = this;
+
         rb = GetComponent<Rigidbody>();
         currentScale = transform.localScale; // Прив'язуємо поточний розмір до "currentScale"
 
         scaleMod = transform.localScale / divider; // Значення на яке буде збільшуватися розмір
 
-        forwardMod = currentScale.z * 1.3F;
+        forwardMod = currentScale.z * 1.3f;
         sideMod = currentScale.x * 0.8f;
 
+        cameraDistanceMod = multiplier;
     }
     // Додає розмір слайму, коли викликається та коригує модіфікатори для анімації
-    public static void AddScale()
+    public void AddScale()
     {
         currentScale = currentScale + scaleMod;
 
         forwardMod = currentScale.z * 1.3f;
         sideMod = currentScale.x * 0.8f;
 
+        forceMultiplier += forceMod;
+
     }
-    public static void AddCameraDistance()
+    public void AddCameraDistance()
     {
-        cameraDistance = currentScale.x;
-        cameraRetreatMod = 1f + (currentScale.x / 7f);
+        cameraDistance = cameraDistance + cameraDistanceMod;
     }
     private void Update()
     {
@@ -89,8 +94,8 @@ public class Player : MonoBehaviour
         }
         mainCamera.transform.position = new Vector3(
             transform.position.x,
-            cameraDistance + cameraDistanceMod,
-            cameraRetreatMod);
+            cameraDistance,
+            transform.position.z + -cameraDistance / 7);
             
     }
     private void SlimeMoveAnim()
@@ -98,13 +103,12 @@ public class Player : MonoBehaviour
         // Плавно змінюємо розмір
         float forwardScale = Mathf.Lerp(
             transform.localScale.z,
-            currentScale.z,
+            forwardMod,
             Time.deltaTime / animTime);
         float sideScale = Mathf.Lerp(
             transform.localScale.x,
-            currentScale.x,
+            sideMod,
             Time.deltaTime / animTime);
-
 
         transform.localScale = new Vector3(
             sideScale,
@@ -116,11 +120,11 @@ public class Player : MonoBehaviour
         // Плавно змінюємо розмір
         float forwardScale = Mathf.Lerp(
             transform.localScale.z,
-            1f,
+            currentScale.z,
             Time.deltaTime / animTime);
         float sideScale = Mathf.Lerp(
             transform.localScale.x,
-            1f,
+            currentScale.x,
             Time.deltaTime / animTime);
 
 
