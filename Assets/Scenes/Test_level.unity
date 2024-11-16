@@ -398,10 +398,10 @@ MonoBehaviour:
   mainCamera: {fileID: 2019322028}
   multiplier: 0.02
   maxSpeed: 10
-  forceMultiplier: 2000
+  forceMultiplier: 2500
   forceMod: 50
   animTime: 0.3
-  divider: 50
+  divider: 100
   forwardMod: 1.3
   sideMod: 0.8
 --- !u!54 &379341260
