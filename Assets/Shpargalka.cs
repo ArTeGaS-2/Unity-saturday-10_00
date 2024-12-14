@@ -61,6 +61,18 @@ public class Shpargalka : MonoBehaviour
         // Виконується якщо хоча б одна вірна
         if (1 == 2 || 2 == 1) { } // || - логічне "або"
 
+        switch (age)
+        {
+            case 12: // Перевіряє "age" зі значенням "12"
+                // Код
+                break; 
+            case 13:
+                // Код
+                break;
+            default:
+                break;
+        }
+
     }
     // Виконується кожен кадр, коли екземпляр об'єкту активний
     private void Update()
