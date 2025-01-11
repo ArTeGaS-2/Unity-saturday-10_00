@@ -1084,7 +1084,6 @@ GameObject:
   - component: {fileID: 1229267462}
   - component: {fileID: 1229267465}
   - component: {fileID: 1229267464}
-  - component: {fileID: 1229267463}
   m_Layer: 0
   m_Name: Object
   m_TagString: Untagged
@@ -1107,29 +1106,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1346865366}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1229267463
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1229267461}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1229267464
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1259,6 +1235,7 @@ GameObject:
   - component: {fileID: 1346865366}
   - component: {fileID: 1346865368}
   - component: {fileID: 1346865367}
+  - component: {fileID: 1346865369}
   m_Layer: 0
   m_Name: DynamicDanger
   m_TagString: Untagged
@@ -1274,14 +1251,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1346865365}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1229267462}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!54 &1346865367
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1332,6 +1309,21 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1346865369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346865365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f63ff9299fe77bd45b91a02cd8fc7722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  needToGo: 0.001
+  objectSpeed: 50
+  anglePerIteration: 50
 --- !u!1 &1363204833
 GameObject:
   m_ObjectHideFlags: 0
