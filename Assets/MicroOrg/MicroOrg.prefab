@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2405913581131111170}
   - component: {fileID: 5286516158014630710}
   - component: {fileID: 8944360060865480475}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MicroOrg
-  m_TagString: Untagged
+  m_TagString: MicroOrg
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 842385083199857271}
   - component: {fileID: 5562618784114117897}
   - component: {fileID: 7328146204075715710}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,8 +9,8 @@ public class DynamicDanger : MonoBehaviour
 
     private Rigidbody rb; // Змінна для компоненту Rigidbody
 
-    private float currentAngleMod = 1f;
-    public float anglePerIteration = 90f; // Те наскільки міняється кут за раз
+    private float currentAngleMod = 1f; // Поточний модифікатор кута
+    public float anglePerIteration = 90f; // Те наскільки міняється кут за раз(кут за ітерацію)
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -25,7 +25,8 @@ public class DynamicDanger : MonoBehaviour
     }
     private void Update()
     {
-        rb.velocity = Vector3.left * objectSpeed * Time.deltaTime;
+        Vector3 left = -transform.right;
+        rb.velocity = left * objectSpeed * Time.deltaTime;
     }
     private IEnumerator RotateDynamicDanger()
     {
@@ -35,7 +36,8 @@ public class DynamicDanger : MonoBehaviour
             transform.rotation = Quaternion.Euler(
                 transform.rotation.x,
                 transform.rotation.y,
-                transform.rotation.z + anglePerIteration); // + кут за ітерацію
+                transform.rotation.z + currentAngleMod); // + кут за ітерацію
+            currentAngleMod += anglePerIteration; 
         }
     }
 }
