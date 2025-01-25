@@ -9,7 +9,6 @@ public class DynamicDanger : MonoBehaviour
 
     private Rigidbody rb; // Змінна для компоненту Rigidbody
 
-    private float currentAngleMod = 1f; // Поточний модифікатор кута
     public float anglePerIteration = 90f; // Те наскільки міняється кут за раз(кут за ітерацію)
     private void OnTriggerEnter(Collider other)
     {
@@ -25,19 +24,22 @@ public class DynamicDanger : MonoBehaviour
     }
     private void Update()
     {
-        Vector3 left = -transform.right;
-        rb.velocity = left * objectSpeed * Time.deltaTime;
+        Vector3 forward = transform.up;
+        rb.velocity = forward * objectSpeed * Time.deltaTime;
     }
     private IEnumerator RotateDynamicDanger()
     {
         while (true)
         {
             yield return new WaitForSeconds(needToGo);
-            transform.rotation = Quaternion.Euler(
-                transform.rotation.x,
-                transform.rotation.y,
-                transform.rotation.z + currentAngleMod); // + кут за ітерацію
-            currentAngleMod += anglePerIteration; 
+
+            // Зміна поточного кута
+            Vector3 currentEulerAngle =
+                transform.rotation.eulerAngles;
+            // Додавання змін до координат y
+            currentEulerAngle.y += anglePerIteration;
+            // Встановлення нових координат обертання
+            transform.rotation = Quaternion.Euler(currentEulerAngle);
         }
     }
 }
