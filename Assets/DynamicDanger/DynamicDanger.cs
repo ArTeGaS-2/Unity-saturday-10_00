@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DynamicDanger : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class DynamicDanger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(other.gameObject);
+            SceneManager.LoadScene(0);
         }
     }
     private void Start()

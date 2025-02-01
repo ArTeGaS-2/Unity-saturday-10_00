@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
     private Transform target; // Ціль (персонаж)
-
     private NavMeshAgent agent; // Компонент для навігації
-
     private void Start()
     {
         // Знаходить об'єкт з ім'ям "Player" та отримує його компонент Transform
@@ -31,11 +30,11 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(3f);
         agent.isStopped = false;
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.transform == target)
+        if (other.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(StopMoving());
+            SceneManager.LoadScene(0);
         }
     }
 }
