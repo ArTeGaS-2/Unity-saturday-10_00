@@ -26,9 +26,13 @@ public class Player : MonoBehaviour
     private Vector3 currentScale; // Поточний розмір
     public float forwardMod = 1.3f; // Розтягувати в довжину
     public float sideMod = 0.8f; // Розтягувати в ширину
-    private void Start()
+    private void Awake()
     {
         Instance = this;
+    }
+    private void Start()
+    {
+       
 
         rb = GetComponent<Rigidbody>();
         currentScale = transform.localScale; // Прив'язуємо поточний розмір до "currentScale"
