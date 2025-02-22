@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
+    public GameObject gameShop;
     private void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("Працює");
+            gameShop.SetActive(true); // Вмикаємо вікно магазину по кліку
+            Time.timeScale = 0f; // Зупиняє час у грі
         }
     }
 }
