@@ -47,5 +47,26 @@ public class WASD_Player : MonoBehaviour
         // Обертання моделі у напрямку миші
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         Plane plane = new Plane(Vector3.up, transform.position);
+        if (plane.Raycast(ray, out float rayDistance))
+        {
+            Vector3 worldMousePosition = ray.GetPoint(rayDistance);
+            Vector3 directionToMouse = worldMousePosition -
+                transform.position;
+            directionToMouse.y = 0;
+
+            if (directionToMouse.sqrMagnitude > 0.001f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(
+                    directionToMouse);
+                transform.rotation = Quaternion.Lerp(
+                    transform.rotation, targetRotation,
+                    Time.deltaTime * rotationSpeed);
+            }
+        }
+        // Оновлення позиції камери
+        mainCamera.transform.position = new Vector3(
+            transform.position.x,
+            cameraDistance,
+            transform.position.z - cameraDistance / 7f);
     }
 }
