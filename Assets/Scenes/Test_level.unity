@@ -779,11 +779,11 @@ GameObject:
   - component: {fileID: 379341259}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &379341259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3346,6 +3346,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bd4f7a6c326f1244791c65beed80919d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6481864528336060663, guid: bd4f7a6c326f1244791c65beed80919d,
         type: 3}

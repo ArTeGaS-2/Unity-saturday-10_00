@@ -10,8 +10,16 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent; // Компонент для навігації
     private void Start()
     {
-        // Знаходить об'єкт з ім'ям "Player" та отримує його компонент Transform
-        target = GameObject.Find("Player").GetComponent<Transform>();
+        if (GameObject.Find("Player") != null)
+        {
+            // Знаходить об'єкт з ім'ям "Player" та отримує його компонент Transform
+            target = GameObject.Find("Player").GetComponent<Transform>();
+        }
+        if (GameObject.Find("Player_2") != null)
+        {
+            // Знаходить об'єкт з ім'ям "Player" та отримує його компонент Transform
+            target = GameObject.Find("Player_2").GetComponent<Transform>();
+        }
         // Отримує компонент NavMeshAgent з префабу ворога
         agent = GetComponent<NavMeshAgent>();
     }

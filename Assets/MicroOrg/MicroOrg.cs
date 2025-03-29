@@ -6,9 +6,16 @@ public class MicroOrg : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Player"))
+        {
+
+        }
+        if (other.gameObject.CompareTag("Slime"))
+        {
+            Player.Instance.AddScale();
+            Player.Instance.AddCameraDistance();
+        }
         Score.Instance.AddScore();
-        Player.Instance.AddCameraDistance();
-        Player.Instance.AddScale();
         Destroy(gameObject);
     }
 }
