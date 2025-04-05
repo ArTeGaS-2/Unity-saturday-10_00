@@ -15,10 +15,12 @@ public class WASD_Player : MonoBehaviour
     private Rigidbody rb; // Посилання на фізичний компонент
     public Animator animator; // Посилання на компонент Аніматору
 
+    private Projectile projectile; // Посилання на скрипт
     private void Start()
     {
         Instance = this; // Бере з пам'яті екземпляр скрипта
         rb = GetComponent<Rigidbody>(); // Призначення компонента в змінну
+        projectile = GetComponent<Projectile>(); // Отримуємо доступ
     }
     private void Update()
     {
