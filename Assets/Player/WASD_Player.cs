@@ -65,6 +65,10 @@ public class WASD_Player : MonoBehaviour
                     Time.deltaTime * rotationSpeed);
             }
         }
+        if (Input.GetMouseButtonDown(0))
+        {
+            projectile.ShootProjectileForward();
+        }
         // Оновлення позиції камери
         mainCamera.transform.position = new Vector3(
             transform.position.x,
