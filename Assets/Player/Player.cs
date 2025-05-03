@@ -26,13 +26,16 @@ public class Player : MonoBehaviour
     private Vector3 currentScale; // Поточний розмір
     public float forwardMod = 1.3f; // Розтягувати в довжину
     public float sideMod = 0.8f; // Розтягувати в ширину
+
+    private Projectile projectileScript; // Скрипт
+
     private void Awake()
     {
         Instance = this;
     }
     private void Start()
     {
-       
+        projectileScript = GetComponent<Projectile>();
 
         rb = GetComponent<Rigidbody>();
         currentScale = transform.localScale; // Прив'язуємо поточний розмір до "currentScale"
@@ -96,6 +99,13 @@ public class Player : MonoBehaviour
                 SlimeStopAnim();
             }
         }
+
+        if (Input.GetMouseButtonDown(1) ||
+            Input.GetKeyDown(KeyCode.Space))
+        {
+            projectileScript.ShootProjectileForward();
+        }
+
         mainCamera.transform.position = new Vector3(
             transform.position.x,
             cameraDistance,

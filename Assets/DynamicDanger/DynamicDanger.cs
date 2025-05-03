@@ -13,7 +13,8 @@ public class DynamicDanger : MonoBehaviour
     public float anglePerIteration = 90f; // Те наскільки міняється кут за раз(кут за ітерацію)
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player")||
+            other.gameObject.CompareTag("Slime"))
         {
             SceneManager.LoadScene(1);
         }

@@ -7,7 +7,8 @@ public class StaticDanger : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") ||
+            collision.gameObject.CompareTag("Slime"))
         {
             SceneManager.LoadScene(1);
         }

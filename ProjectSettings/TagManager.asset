@@ -8,6 +8,7 @@ TagManager:
   - Danger
   - Structure
   - Slime
+  - Projectile
   layers:
   - Default
   - TransparentFX

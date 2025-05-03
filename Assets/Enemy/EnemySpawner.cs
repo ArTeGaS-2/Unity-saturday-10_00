@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -16,7 +17,14 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        playerTransform = GameObject.Find("Player_2").transform;
+        if (GameObject.Find("Player") != null)
+        {
+            playerTransform = GameObject.Find("Player").transform;
+        }
+        if (GameObject.Find("Player_2") != null)
+        {
+            playerTransform = GameObject.Find("Player_2").transform;
+        }
         InvokeRepeating("SpawnEnemy", 2f, spawnInterval);
     }
 
