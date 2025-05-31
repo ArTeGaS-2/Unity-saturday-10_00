@@ -43,7 +43,10 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.CompareTag("Player") ||
             other.gameObject.CompareTag("Slime"))
         {
-            SceneManager.LoadScene(1);
+            // SceneManager.LoadScene(1);
+            Screamer.Instance.ActivateScreamer(
+                Random.Range(0,
+                Screamer.Instance.screamersList.Count - 1));
         }
         if (other.gameObject.CompareTag("Projectile"))
         {
@@ -51,4 +54,5 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 }

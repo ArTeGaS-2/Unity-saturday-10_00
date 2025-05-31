@@ -4,11 +4,24 @@ using UnityEngine;
 
 public class Screamer : MonoBehaviour
 {
-    public GameObject screamer_1_obj; // Об'єкт скрімера
-
-    public void ActivateScreamer_1()
+    public static Screamer Instance; // Сінглтон
+    public List<GameObject> screamersList; // Список скримерів
+    private void Start()
     {
-        // Активація і деактивація скрімера в залежності від поточного стану
-        screamer_1_obj.SetActive(!screamer_1_obj.activeSelf);
+        Instance = this; 
+    }
+    public void ActivateScreamer(int index)
+    {
+        // Активація скрімера
+        screamersList[index].gameObject.SetActive(true);
+    }
+    IEnumerator DeactivateAllScreamers()
+    {
+        yield return new WaitForSeconds(5f);
+    }
+    public void DeactivateScreamer(int index)
+    {
+        // Деактивація скрімера
+        screamersList[index].gameObject.SetActive(false);
     }
 }
