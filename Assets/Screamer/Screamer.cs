@@ -13,15 +13,21 @@ public class Screamer : MonoBehaviour
     public void ActivateScreamer(int index)
     {
         // Активація скрімера
+        index = Random.Range(0, screamersList.Count - 1);
         screamersList[index].gameObject.SetActive(true);
+        StartCoroutine(DeactivateCurrentScreamer(index));
     }
-    IEnumerator DeactivateAllScreamers()
+    IEnumerator DeactivateCurrentScreamer(int index)
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
+        DeactivateScreamer(index);
     }
     public void DeactivateScreamer(int index)
     {
         // Деактивація скрімера
-        screamersList[index].gameObject.SetActive(false);
+        foreach (GameObject screamer in screamersList)
+        {
+            screamer.SetActive(false);
+        }
     }
 }
